@@ -29,7 +29,8 @@
 - 読書後すぐの気持ちを書き留めたいとき
 
 ## 設計書
-![Untitled Diagram-する考-する考 drawio](https://user-images.githubusercontent.com/93434132/178093195-d540656d-701d-475c-bdd4-cba55b8b4fff.png)
+- ER図
+![Untitled Diagram-する考 drawio](https://user-images.githubusercontent.com/93434132/178097458-ff397a49-5b47-4e13-8866-33e859cd4089.png)
 
 ## 開発環境
 - OS：Linux(CentOS)

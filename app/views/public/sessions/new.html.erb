@@ -1,0 +1,25 @@
+<body class="text-center">
+  <main class="form-signin w-100 m-auto">
+    <form>
+      <h1 class="h3 mb-3 fw-normal">サインイン</h1>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-floating">
+          <%= f.label :Emailアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="form-floating">
+          <%= f.label :パスワード %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="actions">
+          <button class="w-100 btn btn-lg btn-primary" type="submit">サインイン</button>
+        </div>
+      <% end %>
+    </form>
+  </main>
+
+<%= render "public/shared/links" %>
+</body>
