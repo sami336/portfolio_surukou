@@ -11,6 +11,42 @@
   </head>
 
   <body>
+   <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">する考</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <% if user_signed_in? %>
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+          <% else %>
+           <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
+            </li>
+            <% end %>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="検索..." aria-label="検索...">
+            <button class="btn btn-outline-success flex-shrink-0" type="submit">検索</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
     <%= yield %>
   </body>
 </html>

@@ -7,8 +7,15 @@ Rails.application.routes.draw do
   }
   
   #会員ルーティング
-  namespace :public do
+  scope module: :public do
   root to: "homes#top"
+  resources :posts
+   resources :users, only: [:show, :edit, :update] do
+    collection do
+      get 'unsubscribe'
+      patch 'withdraw'
+    end
+   end
   end
   
 end
