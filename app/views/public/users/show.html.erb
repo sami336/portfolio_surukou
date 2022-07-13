@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+   <div class="col-md-4">
+    <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle";  %>
+    <h5 class="ms-2 profile-name display-5"><%= @user.name %></h5>
+    <% if @user.id == current_user.id %>
+      <div class="mt-auto">
+       <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-success" %>
+      </div>
+      <div class="mt-3">
+       <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-info" %>
+      </div>
+    <% end %>
+   </div>
+   <div class="col-md-7">
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th scope="col">本</th>
+           <th scope="col">タイトル</th>
+           <th scope="col"></th>
+         </tr>
+       </thead>
+       <tbody>
+        <% @posts.each do |post| %>
+         <tr>
+          <td>
+            <%= image_tag post.image_book, size: '100x100' %>
+          </td>
+          <td><%= link_to post.title ,post_path(post.id) %></td>
+         </tr>
+        <% end %>
+       </tbody>
+     </table>
+   </div>
+  </div>
+</div>
