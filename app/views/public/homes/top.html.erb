@@ -1,4 +1,5 @@
-<section class="bg-dark text-white" id ="home" style ="padding: 80px 0 50px">
+<!--トップの上部画像-->
+<section class="bg-#fcfcf1 text-dark" id ="home" style ="padding: 0 80px 0 50px">
   <div class="container py-3">
    <div class="row align-items-center g-4">
     <div class=" col-md-7">
@@ -6,11 +7,28 @@
       <h5>本の考察コミュニティサイト</h5>
     </div>
     <div class="col-md-5 text-center">
-      <img src="app/assets/images/undraw_Reading_book_re_kqpk.png" class ="img-fluid" alt ="Responsive image">
+      <img src="/assets/undraw_Reading_book_re_kqpk.png" class ="img-fluid" alt ="Responsive image">
     </div>
    </div>
   </div>
 </section>
+<!--コンテンツ-->
+<div class="base-container mw-xl">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div class="border p-3 shadow">
+       <% @posts.each do |post| %>
+       <%= link_to post_path(post.id), class:"card mb-3 shadow", style:"padding: 0; height:350px; width: 200px" do %>
+        <%= image_tag post.get_image_book(150, 200) %>
+       <pclass="card-text">タイトル：<%= post.title %></p>
+       <% end %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

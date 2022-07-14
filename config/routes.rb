@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   #会員ルーティング
   scope module: :public do
   root to: "homes#top"
-  resources :posts
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+   end
    resources :users, only: [:show, :edit, :update] do
     collection do
       get 'unsubscribe'
