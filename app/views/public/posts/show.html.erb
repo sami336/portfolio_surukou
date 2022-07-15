@@ -1,4 +1,12 @@
 <div class="container">
+  <!--ユーザー名-->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+    　<%= link_to user_path(@post.user_id), class: "text-dark" do %>
+        <span><i class="fas fa-user"></i> <%= @post.user.name %></span>
+      <% end %>
+    </div>
+  </div>
   <!--本のイメージ-->
   <div class="row justify-content-center">
     <div class="border col-md-6 text-center">
@@ -38,7 +46,9 @@
    <!--コメント-->
    <div class="row justify-content-center">
       <div class="col-md-6">
+        <% @post.comments.each do |comment| %>
   　　  　<%= @post.comments %>
+  　　  　<% end %>
   　　　　  <% if @comment.user == current_user %>
      　　　 <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
     　　<% end %>
@@ -47,10 +57,22 @@
     <div class="row justify-content-center">
      <div class="form-group col-md-6">
         <%= form_with model: [@post, @comment] do |f| %>
-        <%= f.text_area :comment, rows: '3', cols: '70', placeholder: "コメントをここに" %>
+        <%= f.text_area :post_comment, rows: '3', cols: '70', placeholder: "コメントをここに" %>
         <button class="btn btn-primary" type="submit">コメントする</button>
         <% end %>
      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="form-group col-md-6">
+      <% if @post.user == current_user %>
+      <%= link_to edit_post_path(@post) do %>
+        <button class="btn btn-success" type="submit">編集する</button>
+      <% end %>
+      <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+      <button class="btn btn-danger" type="submit">削除する</button>
+      <% end %>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>

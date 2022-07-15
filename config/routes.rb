@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
    end
    resources :users, only: [:show, :edit, :update] do
+    member do
+      get :favorites
+    end
     collection do
       get 'unsubscribe'
       patch 'withdraw'

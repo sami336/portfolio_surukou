@@ -1,10 +1,12 @@
 class Public::CommentsController < ApplicationController
+  #ログイン中のみ許可
+  before_action :authenticate_user!
   
   def create
     post = Post.find(params[:post_id])
-    post_comment = current_user.comments.new(comment_params)
-    post_comment.post_id = post.id
-    post_comment.save
+    comment = current_user.comments.new(comment_params)
+    comment.post_id = post.id
+    comment.save
     redirect_to post_path(post)
   end
   

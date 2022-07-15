@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_tags
-  
+
   #画像投稿機能
   def get_image_book(width, height)
     unless image_book.attached?
@@ -13,9 +13,11 @@ class Post < ApplicationRecord
     end
     image_book
   end
-  
+
   #いいね機能
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
 end
+

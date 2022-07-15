@@ -1,0 +1,12 @@
+<div class="col-md-4">
+    <%= image_tag user.get_profile_image(100,100), class:"rounded-circle";  %>
+    <h5 class="ms-2 profile-name display-5"><%= user.name %></h5>
+    <% if @user.id == current_user.id %>
+      <div class="mt-auto">
+       <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-success" %>
+      </div>
+      <div class="mt-3">
+       <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-info" %>
+      </div>
+    <% end %>
+   </div>
