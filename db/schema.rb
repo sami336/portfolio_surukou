@@ -55,14 +55,6 @@ ActiveRecord::Schema.define(version: 2022_07_14_135550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "image_book"

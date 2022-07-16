@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
+  
   def show
     @user = User.find(params[:id])
     @posts = @user.posts 
@@ -27,6 +29,10 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
+    @user = current_user
+    @user.update_status_destroy
+    reset_session
+    redirect_to root_path
   end
 
   private

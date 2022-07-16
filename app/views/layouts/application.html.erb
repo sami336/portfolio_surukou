@@ -42,6 +42,9 @@
             <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
             </li>
+            <li class="nav-item">
+              <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-white' %>
+            </li>
             <% end %>
           </ul>
           <form class="form-inline my-2 my-lg-0" role="search">

@@ -46,19 +46,19 @@
    <!--コメント-->
    <div class="row justify-content-center">
       <div class="col-md-6">
-        <% @post.comments.each do |comment| %>
-  　　  　<%= @post.comments %>
-  　　  　<% end %>
-  　　　　  <% if @comment.user == current_user %>
-     　　　 <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-    　　<% end %>
+       <% @post.comments.each do |comment| %>
+          <%= comment.post_comment %>
+        <% if comment.user == current_user %>
+          <%= link_to "コメント削除", post_comment_path(comment.post, comment), method: :delete %>
+        <% end %>
+       <% end %>
     　</div>
     </div>
     <div class="row justify-content-center">
      <div class="form-group col-md-6">
         <%= form_with model: [@post, @comment] do |f| %>
         <%= f.text_area :post_comment, rows: '3', cols: '70', placeholder: "コメントをここに" %>
-        <button class="btn btn-primary" type="submit">コメントする</button>
+        <button class="btn btn-info" type="submit">コメントする</button>
         <% end %>
      </div>
     </div>
