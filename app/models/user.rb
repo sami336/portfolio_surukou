@@ -36,4 +36,13 @@ class User < ApplicationRecord
       user.name = "ゲスト"
     end
   end
+  
+  #検索機能
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @user = User.where("name LIKE ?", "#{words}")
+    else
+      @user = User.where("name LIKE ?", "%#{words}%")
+    end
+end
 end

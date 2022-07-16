@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #会員ルーティング
   scope module: :public do
   root to: "homes#top"
+  get 'search' => "searches#search"
   resources :posts do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

@@ -19,5 +19,13 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  #検索機能
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @post = Post.where("name LIKE ?", "#{words}")
+    else
+      @post = Post.where("name LIKE ?", "%#{words}%")
+    end
+  end
 end
 
