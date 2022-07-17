@@ -15,17 +15,36 @@
 <!--コンテンツ-->
 <div class="base-container mw-xl">
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6">
-      <div class="border p-3 shadow">
-       <% @posts.each do |post| %>
-       <%= link_to post_path(post.id), class:"card mb-3 shadow", style:"padding: 0; height:350px; width: 200px" do %>
-        <%= image_tag post.get_image_book(150, 200) %>
-       <pclass="card-text">タイトル：<%= post.title %></p>
-       <% end %>
-       <% end %>
-      </div>
+     <div class="col-md-1"></div>
+     <div class="col-md-7">
+         <div class="d-flex justify-content-between flex-wrap">
+           <% @posts.each do |post| %>
+             <div class="w-49 m-1">
+              <div>
+              <div class="border p-3 shadow">
+               <%= link_to post_path(post.id), class: "card mb-3 shadow" do %>
+                <%= image_tag post.get_image_book, width: 280, height: 300 %>
+               <p class="card-text">タイトル：<%= post.title %></p>
+               <% end %>
+              </div>
+              </div>
+             </div>
+           <% end %>
+         </div>
+        <div class="pagination pagination-sm justify-content-center">
+          <%= paginate @posts %>
+        </div>
+     </div>
+     
+     <!--タグ一覧-->
+    <div class="col-md-3 border-top">
+        <p>タグ検索</p>
+        <% @tag_list.each do |list| %>
+            <%=link_to list.tag_name,search_tag_path(tag_id: list.id), class: "btn btn-light" %>
+            <%= "(#{list.posts.count})" %>
+        <% end %>
     </div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 

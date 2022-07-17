@@ -33,16 +33,14 @@
               <%= link_to 'お気に入り一覧', favorites_user_path(current_user.id), class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
-            <form class="form-inline my-2 my-lg-0" role="search">
-            <%= form_with url: search_path, method: :get, local: :true do |f| %>
+            <%= form_with url: search_path, method: :get, class: "form-inline my-2 my-lg-0", local: :true do |f| %>
                 <%= f.text_field :word, placeholder: "検索...", class: "form-control" %>
                 <%= f.select :range, options_for_select([['User'], ['Post']]) %>
                 <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]), class: 'form-control me-2' %>
                 <%= f.submit "検索", class: "btn btn-outline-success flex-shrink-0" %>
             <% end %>
-          </form>
           <% else %>
            <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>

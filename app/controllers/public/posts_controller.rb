@@ -8,28 +8,31 @@ class Public::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.user_id = current_user.id
+    tag_list = params[:post][:tag_name].split(',')
     if post.save
-     redirect_to root_path
+      post.save_tag(tag_list)
+      redirect_to root_path
     else
      render :new
     end
   end
 
-  def index
-  end
-
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @post_tags = @post.tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:tag_name).join(',')
   end
 
   def update
     post = Post.find(params[:id])
+    tag_list = params[:post][:tag_name].split(',')
     if post.update(post_params)
+      post.save_tag(tag_list)
       redirect_to post_path(post.id)
     else
       render :new
@@ -40,6 +43,12 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to user_path(post.user_id)
+  end
+  
+  def search_tag
+    @tag_list = Tag.all
+    @tag =Tag.find(params[:tag_id])
+    @posts = @tag.posts.page(params[:page]).per(10)
   end
   
   private

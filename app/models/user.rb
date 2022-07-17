@@ -38,11 +38,13 @@ class User < ApplicationRecord
   end
   
   #検索機能
-  def self.looks(searches, words)
-    if searches == "perfect_match"
+  def self.looks(search, words)
+    if search == "perfect_match"
       @user = User.where("name LIKE ?", "#{words}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE ?", "\%#{words}\%")
     else
-      @user = User.where("name LIKE ?", "%#{words}%")
+      @user = User.all
     end
-end
+  end
 end

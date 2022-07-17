@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   scope module: :public do
   root to: "homes#top"
   get 'search' => "searches#search"
+  get 'search_tag' => "posts#search_tag"
   resources :posts do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

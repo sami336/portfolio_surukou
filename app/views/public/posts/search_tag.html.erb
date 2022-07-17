@@ -1,13 +1,16 @@
 <div class="container">
-  <div class="row">
-   <!--ページ左側の会員プロフィール-->
-   <%= render 'profile', user: @user %>
+<h5>タグが<%=@tag.tag_name%>の投稿一覧</h5>
 
-   <div class="col-md-8">
-     <table class="table table-striped">
+<!--タグリスト-->
+<% @tag_list.each do |list|%>
+  <%=link_to list.tag_name,search_tag_path(tag_id: list.id) %>
+  <%="(#{list.posts.count})" %>
+<% end %>
+
+<table class="table table-striped">
        <thead>
          <tr>
-           <th scope="col">本</th>
+           <th scope="col">ユーザー</th>
            <th scope="col">タイトル</th>
            <th scope="col"></th>
          </tr>
@@ -16,7 +19,7 @@
         <% @posts.each do |post| %>
          <tr>
           <td>
-            <%= image_tag post.image_book, size: '100x100' %>
+            <span><i class="fas fa-user"></i> <%= post.user.name %></span>
           </td>
           <td><%= link_to post.title ,post_path(post.id) %></td>
           <td><i class="fas fa-tag"></i><%= post.tags.map(&:tag_name).join(', ') %></td>
@@ -24,6 +27,4 @@
         <% end %>
        </tbody>
      </table>
-   </div>
-  </div>
 </div>

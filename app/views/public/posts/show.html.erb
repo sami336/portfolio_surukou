@@ -10,7 +10,7 @@
   <!--本のイメージ-->
   <div class="row justify-content-center">
     <div class="border col-md-6 text-center">
-      <%= image_tag @post.get_image_book(90, 100), style:"padding: 0; height:300px; width: 200px" %>
+      <%= image_tag @post.get_image_book,  width: 100, height: 150, style:"padding: 0; height:300px; width: 200px" %>
     </div>
     </div>
     <!--タイトル-->
@@ -39,8 +39,14 @@
       <%= link_to post_favorites_path(@post), method: :post do %>
         ♡<%= @post.favorites.count %> いいね
       <% end %>
-    </p>
      <% end %>
+     <div class="text-align: raight">
+      <% @post_tags.each do |tag| %>
+      <i class="fas fa-tag"></i>
+       <%=tag.tag_name%><%="(#{tag.posts.count})" %>
+      <% end %>
+     </div> 
+    </p>
     </div>
    </div>
    <!--コメント-->
