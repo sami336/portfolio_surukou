@@ -21,8 +21,20 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="Navbar">
-          <% if user_signed_in? %>
+        <!--管理者がログインしているとき-->
+        <% if admin_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <%= link_to '会員投稿一覧', admin_posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+        <!--会員がログインしているとき-->
+        <% elsif user_signed_in? %>
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
             </li>
@@ -50,6 +62,9 @@
             </li>
             <li class="nav-item">
               <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "管理者ログイン", new_admin_session_path, class: 'nav-link text-white' %>
             </li>
             <% end %>
           </ul>

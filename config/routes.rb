@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   
+  #管理者ルーティング
+  devise_for :admin, skip: [:passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
+  
+  namespace :admin do
+     root to: "posts#index"
+     resources :users, only: [:show, :edit, :update, :index] 
+     resources :posts, only: [:index, :show, :destroy]
+  end
+  
+  
   #ルーティング変更
   devise_for :users,skip: [:passwords], controllers: {
   sessions:      'public/sessions',

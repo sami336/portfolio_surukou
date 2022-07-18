@@ -36,7 +36,7 @@ class User < ApplicationRecord
       user.name = "ゲスト"
     end
   end
-  
+
   #検索機能
   def self.looks(search, words)
     if search == "perfect_match"

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="container">
+    <h5>会員一覧</h5>
+      <div class="col-md-8">
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th scope="col">ユーザー</th>
+           <th scope="col">会員ステータス</th>
+         </tr>
+       </thead>
+       <tbody>
+        <% @users.each do |user| %>
+         <tr>
+          <td>
+            <%= link_to user.name, admin_user_path(user.id) %>
+          </td>
+          <td>
+            <% if user.user_status == true %>
+              <p class= 'text-success'>有効</p>
+            <% else user.user_status == false %>
+              <p class= 'text-danger'>退会</p>
+            <% end %>
+          </td>
+         </tr>
+        <% end %>
+       </tbody>
+     </table>
+   </div>
+  </div>
+</div>
