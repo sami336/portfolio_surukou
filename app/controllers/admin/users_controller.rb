@@ -9,13 +9,13 @@ class Admin::UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])
   end
   
   def update
     @user = User.find(params[:id])
-    if @user.update(user_status: true)
-       reset_session
-       redirect_to admin_posts_path
+    if @user.update(user_params)
+       redirect_to admin_users_path
     else
        render :edit
     end
@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:user_status )
+    params.require(:user).permit(:user_status)
   end
   
 end
