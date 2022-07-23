@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @post = Post.new
   end
@@ -38,19 +38,26 @@ class Public::PostsController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
     post = Post.find(params[:id])
+    tags = post.tags.pluck(:id)
     post.destroy
+    tags.each do |tag_id|
+      count = PostTag.where(tag_id: tag_id).count
+      if count <= 0
+        Tag.find(tag_id).destroy
+      end
+    end
     redirect_to user_path(post.user_id)
   end
-  
+
   def search_tag
     @tag_list = Tag.all
     @tag =Tag.find(params[:tag_id])
     @posts = @tag.posts.page(params[:page]).per(10)
   end
-  
+
   private
 
   def post_params
