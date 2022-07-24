@@ -2,13 +2,13 @@
  <div class="row">
   <body class="text-center">
    <main class="form-signin w-100 m-auto">
-     <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+     <h3 class="mb-3 fw-normal">ログイン</h3>
        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div class="mb-3">
+        <div class="form-group">
           <%= f.label :メールアドレス %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-        <div class="mb-3">
+        <div class="form-group">
           <%= f.label :パスワード %>
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
@@ -17,7 +17,6 @@
         </div>
       <% end %>
   </main>
-
   <%= render "public/shared/links" %>
   </body>
  </div>
