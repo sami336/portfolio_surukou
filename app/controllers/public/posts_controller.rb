@@ -6,11 +6,11 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
     tag_list = params[:post][:tag_name].split(',')
-    if post.save
-      post.save_tag(tag_list)
+    if @post.save
+      @post.save_tag(tag_list)
       redirect_to root_path
     else
      render :new
@@ -29,13 +29,13 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     tag_list = params[:post][:tag_name].split(',')
-    if post.update(post_params)
+    if @post.update(post_params)
       post.save_tag(tag_list)
       redirect_to post_path(post.id)
     else
-      render :new
+      render :edit
     end
   end
 

@@ -6,13 +6,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-   <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <div class="container-fluid">
         <a class="navbar-brand">
          <%= link_to 'ホーム',root_path, class: 'nav-link text-white' %>
@@ -25,7 +26,7 @@
         <% if admin_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <%= link_to '会員投稿一覧', admin_posts_path, class: 'nav-link text-white' %>
+              <%= link_to '投稿一覧', admin_posts_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
               <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %>
@@ -71,14 +72,15 @@
         </div>
       </div>
     </nav>
-  </header>
-  <main class="mb-auto">
-  <%= yield %>
-  </main>
-    <footer class="bg-dark text-white py-2 pb-0">
+    </header>
+    <main class="inner">
+      <%= yield %>
+    </main>
+    <footer class="bg-dark text-white py-2 mb-0">
       <div class="text-center">
         2022 する考
       </div>
   　</footer>
-　</body>
+  </div>
+</body>
 </html>

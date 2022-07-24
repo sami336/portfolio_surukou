@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  
+  #バリデーション
+  validates :title, presence: true
+  validates :body, presence: true
 
   #画像投稿機能
   def get_image_book
