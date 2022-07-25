@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -22,9 +23,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="navbar-nav mr-auto mb-2 mb-md-0">
         <!--管理者がログインしているとき-->
-        <% if admin_signed_in? %>
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to '投稿一覧', admin_posts_path, class: 'nav-link text-white' %>
             </li>
@@ -80,7 +81,7 @@
       <div class="text-center">
         2022 する考
       </div>
-  　</footer>
+    </footer>
   </div>
 </body>
 </html>
