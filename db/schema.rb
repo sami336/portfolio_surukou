@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_084025) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "tag_id"
     t.string "image_book"
     t.string "title"
     t.text "body"

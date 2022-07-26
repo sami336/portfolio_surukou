@@ -43,6 +43,7 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     tags = post.tags.pluck(:id)
     post.destroy
+    #タグの数が0の場合、タグを削除する
     tags.each do |tag_id|
       count = PostTag.where(tag_id: tag_id).count
       if count <= 0
