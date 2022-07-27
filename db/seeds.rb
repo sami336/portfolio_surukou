@@ -12,17 +12,23 @@ users = User.create!(
     ]
   )
   
-  tags = Tag.create!(
+Tag.create!(
     [
       {tag_name: '名作'}
     ]
   )
-  
+
 Post.create!(
     [
-      {title: '羅生門', body: '芥川龍之介の羅生門を読んで、、、', image_book: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename: "sample-post2.jpg"), user_id: users[0].id, tag_id: tags[0].id },
+      {title: '羅生門', body: '芥川龍之介の羅生門を読んで、、、', image_book: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename: "sample-post2.jpg"), user_id: users[0].id },
       {title: '檸檬', body: '梶井基次郎の檸檬を読んで、、、', image_book: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename: "sample-post1.jpg"), user_id: users[1].id },
       {title: 'ノルウェイの森', body: '村上春樹のノルウェイの森を読んで、、、', user_id: users[2].id }
     ]
   )
 
+
+PostTag.create!(
+    [
+        {post: Post.first, tag: Tag.first}
+    ]
+  )
